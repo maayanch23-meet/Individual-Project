@@ -19,11 +19,19 @@ app = Flask(__name__, template_folder='templates', static_folder='static')
 app.config['SECRET_KEY'] = 'super-secret-key'
 
 #Code goes below here
-@app.route('/')
-def home():
-	return render_template('home.html')
+@app.route('/', methods=['GET', 'POST'])
+def signin():
+	if request.method == 'POST':
+		email = request.form['email']
+		password = request.form['password']
+		try:
+			login_session['user'] = auth.sign_in_with_email_and_password(email, password)
+			return redirect(url_for('home'))
+		except:
+			error = "Authentication failed"
+	return render_template("signin.html")
 
-	
+
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
 	if request.method == 'POST':
@@ -33,12 +41,26 @@ def signup():
 		try:
 			login_session['user'] = auth.create_user_with_email_and_password(email, password)
 			db.child("Users").child(login_session['user']['localId']).set(user)
-			return render_template('signup.html')
+			return redirect(url_for('home'))
 		except:
 			error = "Authentication failed"
 	return render_template("signup.html")
 
+@app.route('/home', methods = ['GET', 'POST'])
+def home():
+	if request.method == 'POST':
+		try:
+			task = {"user_task" : request.form['task']}
+			db.child("Users").child(login_session['user']['localId']).set(task)
+			return redirect(url_for('home'))
+		except:
+			error = "Authentication failed"
+	return render_template("home.html")
 
+@app.route('/to_do_list')
+def to_do_list():
+	user_tasks = db.child("Users").child(login_session['user']['localId']).child("task").get().val()
+	return render_template("todolist.html", user_tasks = user_tasks)
 
 #Code goes above here
 
