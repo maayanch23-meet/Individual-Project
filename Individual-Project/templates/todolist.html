@@ -4,10 +4,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Your to do list</title>
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
-
-	<h3> {{user_tasks}} </h3>
+	{% for task in user_task%}
+	<h3> {{task}}  <a href="/delete/{{task}}">delete</a></h3>
+	{% endfor %}
+	
 
 </body>
 </html>

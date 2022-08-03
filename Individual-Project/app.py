@@ -3,13 +3,13 @@ from flask import session as login_session
 import pyrebase
 
 config = {
-  "apiKey" : "AIzaSyBP6AkN_CdrLJbevi9srOPtrdwXgwfGNps",
-  "authDomain" : "cs-project-af5ad.firebaseapp.com",
-  "projectId" : "cs-project-af5ad",
-  "storageBucket" : "cs-project-af5ad.appspot.com",
-  "messagingSenderId" : "213710981406",
-  "appId" : "1:213710981406:web:33141b3eaff556b721210f",
-  "measurementId" : "G-R8HYBM3MEG", "databaseURL" : "https://cs-project-af5ad-default-rtdb.europe-west1.firebasedatabase.app/"
+	"apiKey" : "AIzaSyBP6AkN_CdrLJbevi9srOPtrdwXgwfGNps",
+	"authDomain" : "cs-project-af5ad.firebaseapp.com",
+	"projectId" : "cs-project-af5ad",
+	"storageBucket" : "cs-project-af5ad.appspot.com",
+	"messagingSenderId" : "213710981406",
+	"appId" : "1:213710981406:web:33141b3eaff556b721210f",
+	"measurementId" : "G-R8HYBM3MEG", "databaseURL" : "https://cs-project-af5ad-default-rtdb.europe-west1.firebasedatabase.app/"
 }
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
@@ -50,8 +50,8 @@ def signup():
 def home():
 	if request.method == 'POST':
 		try:
-			task = {"user_task" : request.form['task']}
-			db.child("Users").child(login_session['user']['localId']).set(task)
+			task = {request.form['task'] : "val"}
+			db.child("Users").child(login_session['user']['localId']).child('Tasks').update(task)
 			return redirect(url_for('home'))
 		except:
 			error = "Authentication failed"
@@ -59,8 +59,21 @@ def home():
 
 @app.route('/to_do_list')
 def to_do_list():
-	user_tasks = db.child("Users").child(login_session['user']['localId']).child("task").get().val()
-	return render_template("todolist.html", user_tasks = user_tasks)
+	task = db.child("Users").child(login_session['user']['localId']).child("Tasks").get().val()
+	if task == None:
+		task = []
+	return render_template("todolist.html", user_task = task)
+
+@app.route('/delete/<string:user_task>', methods = ['GET','POST'])
+def delete(user_task):
+	try:
+		db.child("Users").child(login_session['user']['localId']).child("Tasks").child(user_task).remove()
+		return redirect(url_for('to_do_list'))
+	except:
+		error = "Couldn’t remove object"
+	return redirect(url_for('to_do_list'))
+
+
 
 #Code goes above here
 

@@ -4,8 +4,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>home</title>
+	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
+
 	<form method="post" action="/home">
 	<div>
       <label>New task</label>
@@ -14,7 +16,7 @@
          </div>
    </div>
    <div>
-       <input type="submit"/>
+       <input class = "submit" type="submit"/>
    </div>
 </form>
 <a href="{{url_for('to_do_list')}}">Your to do list</a>
