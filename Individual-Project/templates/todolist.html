@@ -7,10 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
-	{% for task in user_task%}
-	<h3> {{task}}  <a href="/delete/{{task}}">delete</a></h3>
+		<ul>
+  <li><a class="active" href="{{url_for('home')}}">Home</a></li>
+  <li><a href="{{url_for('signin')}}">Log in</a></li>
+  <li><a href="{{url_for('signup')}}">Signup</a></li>
+
+</ul>
+	<div class = "bigdiv">
+	{% for task in user_task %}
+	<a class = "tasks" href="/delete/{{task}}"><h3> {{task}} </h3></a>
 	{% endfor %}
-	
+</div>
+
 
 </body>
 </html>

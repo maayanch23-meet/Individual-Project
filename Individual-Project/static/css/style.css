@@ -1,20 +1,31 @@
-a:link, a:visited {
-  background-color: white;
+
+.tasks:link, .tasks:visited {
+  background-color: LightSteelBlue;
   color: black;
-  border: 2px solid LightSteelBlue;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
+  width: 90%;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
 }
 
-a:hover, a:active {
-  background-color: LightSteelBlue;
+.tasks:hover, .tasks:active {
+  background-color: pink;
   color: white;
+
 }
 body {
-    max-width: 500px;
+  max-width: 500px;
   margin: auto;
+  background: url("loverba.jpg");
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-style: oblique;
+}
 }
 input[type=text], select {
   width: 100%;
@@ -28,21 +39,54 @@ input[type=text], select {
 
 input[type=submit] {
   width: 100%;
-  background-color: white;
-  color: black;
+  background-color: LightSteelBlue;
+  color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: 2px solid LightSteelBlue;
   border-radius: 4px;
   cursor: pointer;
+  font-style: oblique;
 }
 
 input[type=submit]:hover {
-  background-color: LightSteelBlue;
+  background-color: PeachPuff;
+  border: 2px solid PeachPuff;
+  
 }
 
 div {
+
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: pink;
   padding: 20px;
+  background-color: LavenderBlush;
+}
+
+.bigdiv{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: LightSteelBlue;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: PaleGoldenRod;
 }
