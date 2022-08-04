@@ -23,19 +23,21 @@ body {
   background: url("loverba.jpg");
     background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100% 100%;
   font-style: oblique;
 }
 }
+
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  font-style: oblique;
 }
+
 
 input[type=submit] {
   width: 100%;

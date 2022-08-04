@@ -21,6 +21,7 @@ app.config['SECRET_KEY'] = 'super-secret-key'
 #Code goes below here
 @app.route('/', methods=['GET', 'POST'])
 def signin():
+	messege=""
 	if request.method == 'POST':
 		email = request.form['email']
 		password = request.form['password']
@@ -29,7 +30,8 @@ def signin():
 			return redirect(url_for('home'))
 		except:
 			error = "Authentication failed"
-	return render_template("signin.html")
+			messege = "your email or password wrong"
+	return render_template("signin.html", messege = messege)
 
 
 @app.route('/signup', methods=['GET', 'POST'])

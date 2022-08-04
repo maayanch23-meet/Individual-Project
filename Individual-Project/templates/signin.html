@@ -7,11 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
-		<ul>
-
+    <ul>
   <li><a href="{{url_for('signup')}}">Signup</a></li>
-
 </ul>
+
 	<div class = "bigdiv">
 	<form method="post" action="/">
        <div>
@@ -25,10 +24,13 @@
             <div>
                 <input type="password"  name="password" id="passwordeStr" required>
             </div>
+             <p>{{messege}}</p>
         </div>
+
             <div>
             <input class = "submit" type="submit"/>
         </div>
+
     </form>
 </div>
     
